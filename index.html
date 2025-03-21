@@ -1,213 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flower for You</title>
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #87ceeb, #e0f7fa);
+        overflow: hidden;
+        font-family: "Arial", sans-serif;
+      }
+
+      .container {
+        text-align: center;
+        position: relative;
+      }
+
+      .flower {
+        position: relative;
+        margin: 20px auto;
+        width: 200px;
+        height: 200px;
+        transform-origin: center bottom;
+        animation: sway 4s ease-in-out infinite alternate;
+      }
+
+      .center {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: #ffd700;
+        border-radius: 50%;
+        top: 80px;
+        left: 80px;
+        z-index: 2;
+        transition: transform 0.3s;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+
+      .center:hover {
+        transform: scale(1.2);
+      }
+
+      .petal {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background: #ff69b4;
+        border-radius: 50% 50% 0 50%;
+        top: 65px;
+        left: 65px;
+        transform-origin: bottom right;
+        transition: all 0.3s;
+        box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+      }
+
+      .stem {
+        position: absolute;
+        width: 8px;
+        height: 200px;
+        background: linear-gradient(to bottom, #228b22, #32cd32);
+        bottom: -200px;
+        left: 96px;
+        z-index: -1;
+      }
+
+      .leaf {
+        position: absolute;
+        width: 50px;
+        height: 30px;
+        background: #32cd32;
+        border-radius: 50% 50% 50% 0;
+        bottom: -100px;
+        left: 104px;
+        transform: rotate(-30deg);
+        z-index: -1;
+        box-shadow: 0 0 5px rgba(50, 205, 50, 0.5);
+      }
+
+      .leaf:nth-child(2) {
+        bottom: -140px;
+        left: 46px;
+        transform: rotate(30deg) scaleX(-1);
+      }
+
+      .message {
+        margin-top: 240px;
+        color: #333;
+        font-size: 24px;
+        text-shadow: 1px 1px 2px white;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 20px;
+        color: red;
+        animation: float 3s ease-in-out infinite;
+        opacity: 0;
+      }
+
+      @keyframes sway {
+        0% {
+          transform: rotate(-5deg);
         }
-        
-        .container {
-            text-align: center;
-            position: relative;
+        100% {
+          transform: rotate(5deg);
         }
-        
-        .flower {
-            position: relative;
-            margin: 20px auto;
-            width: 200px;
-            height: 200px;
-            transform-origin: center bottom;
-            animation: sway 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
         }
-        
-        .center {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: #FFD700;
-            border-radius: 50%;
-            top: 80px;
-            left: 80px;
-            z-index: 2;
-            transition: transform 0.3s;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        100% {
+          transform: translateY(-100px) scale(0);
+          opacity: 0;
         }
-        
-        .center:hover {
-            transform: scale(1.2);
-        }
-        
-        .petal {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            background: #FF69B4;
-            border-radius: 50% 50% 0 50%;
-            top: 65px;
-            left: 65px;
-            transform-origin: bottom right;
-            transition: all 0.3s;
-            box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
-        }
-        
-        .stem {
-            position: absolute;
-            width: 8px;
-            height: 200px;
-            background: linear-gradient(to bottom, #228B22, #32CD32);
-            bottom: -200px;
-            left: 96px;
-            z-index: -1;
-        }
-        
-        .leaf {
-            position: absolute;
-            width: 50px;
-            height: 30px;
-            background: #32CD32;
-            border-radius: 50% 50% 50% 0;
-            bottom: -100px;
-            left: 104px;
-            transform: rotate(-30deg);
-            z-index: -1;
-            box-shadow: 0 0 5px rgba(50, 205, 50, 0.5);
-        }
-        
-        .leaf:nth-child(2) {
-            bottom: -140px;
-            left: 46px;
-            transform: rotate(30deg) scaleX(-1);
-        }
-        
-        .message {
-            margin-top: 240px;
-            color: #333;
-            font-size: 24px;
-            text-shadow: 1px 1px 2px white;
-            opacity: 0;
-            transition: opacity 1s;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            color: red;
-            animation: float 3s ease-in-out infinite;
-            opacity: 0;
-        }
-        
-        @keyframes sway {
-            0% { transform: rotate(-5deg); }
-            100% { transform: rotate(5deg); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-100px) scale(0); opacity: 0; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="flower">
-            <div class="center" id="center"></div>
-            <div class="petal" style="transform: rotate(0deg);"></div>
-            <div class="petal" style="transform: rotate(45deg);"></div>
-            <div class="petal" style="transform: rotate(90deg);"></div>
-            <div class="petal" style="transform: rotate(135deg);"></div>
-            <div class="petal" style="transform: rotate(180deg);"></div>
-            <div class="petal" style="transform: rotate(225deg);"></div>
-            <div class="petal" style="transform: rotate(270deg);"></div>
-            <div class="petal" style="transform: rotate(315deg);"></div>
-            <div class="stem"></div>
-            <div class="leaf"></div>
-            <div class="leaf"></div>
-        </div>
-        <div class="message" id="message">I love you! Yazmin ❤️</div>
+      <div class="flower">
+        <div class="center" id="center"></div>
+        <div class="petal" style="transform: rotate(0deg)"></div>
+        <div class="petal" style="transform: rotate(45deg)"></div>
+        <div class="petal" style="transform: rotate(90deg)"></div>
+        <div class="petal" style="transform: rotate(135deg)"></div>
+        <div class="petal" style="transform: rotate(180deg)"></div>
+        <div class="petal" style="transform: rotate(225deg)"></div>
+        <div class="petal" style="transform: rotate(270deg)"></div>
+        <div class="petal" style="transform: rotate(315deg)"></div>
+        <div class="stem"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+      </div>
+      <div class="message" id="message">Bober loves you! Yazmin ❤️</div>
     </div>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const center = document.getElementById('center');
-            const petals = document.querySelectorAll('.petal');
-            const message = document.getElementById('message');
-            const container = document.querySelector('.container');
-            
-            // Show message after 2 seconds
+      document.addEventListener("DOMContentLoaded", function () {
+        const center = document.getElementById("center");
+        const petals = document.querySelectorAll(".petal");
+        const message = document.getElementById("message");
+        const container = document.querySelector(".container");
+
+        // Show message after 2 seconds
+        setTimeout(() => {
+          message.style.opacity = 1;
+        }, 2000);
+
+        // Make petals bloom on hover
+        center.addEventListener("mouseover", function () {
+          petals.forEach((petal, index) => {
             setTimeout(() => {
-                message.style.opacity = 1;
-            }, 2000);
-            
-            // Make petals bloom on hover
-            center.addEventListener('mouseover', function() {
-                petals.forEach((petal, index) => {
-                    setTimeout(() => {
-                        petal.style.transform = `rotate(${index * 45}deg) translateX(20px)`;
-                        petal.style.backgroundColor = getRandomColor();
-                    }, index * 100);
-                });
-            });
-            
-            // Return to normal when not hovering
-            center.addEventListener('mouseout', function() {
-                petals.forEach((petal, index) => {
-                    setTimeout(() => {
-                        petal.style.transform = `rotate(${index * 45}deg)`;
-                        petal.style.backgroundColor = '#FF69B4';
-                    }, index * 100);
-                });
-            });
-            
-            // Create hearts when clicked
-            center.addEventListener('click', function(e) {
-                createHeart();
-                const audio = new Audio('https://cdnjs.cloudflare.com/ajax/libs/soundjs/1.0.1/soundjs.min.js');
-                try {
-                    audio.play();
-                } catch(err) {
-                    console.log('Audio could not be played');
-                }
-            });
-            
-            function createHeart() {
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => {
-                        const heart = document.createElement('div');
-                        heart.innerHTML = '❤️';
-                        heart.classList.add('heart');
-                        heart.style.left = 80 + Math.random() * 40 + 'px';
-                        heart.style.top = 80 + 'px';
-                        container.appendChild(heart);
-                        
-                        setTimeout(() => {
-                            heart.remove();
-                        }, 3000);
-                    }, i * 300);
-                }
-            }
-            
-            function getRandomColor() {
-                const colors = ['#FF69B4', '#FF1493', '#DB7093', '#FFC0CB', '#FFB6C1'];
-                return colors[Math.floor(Math.random() * colors.length)];
-            }
-            
-            // Make flower respond to mouse movement
-            document.addEventListener('mousemove', function(e) {
-                const flower = document.querySelector('.flower');
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                flower.style.transform = `rotate(${xAxis}deg)`;
-            });
+              petal.style.transform = `rotate(${
+                index * 45
+              }deg) translateX(20px)`;
+              petal.style.backgroundColor = getRandomColor();
+            }, index * 100);
+          });
         });
+
+        // Return to normal when not hovering
+        center.addEventListener("mouseout", function () {
+          petals.forEach((petal, index) => {
+            setTimeout(() => {
+              petal.style.transform = `rotate(${index * 45}deg)`;
+              petal.style.backgroundColor = "#FF69B4";
+            }, index * 100);
+          });
+        });
+
+        // Create hearts when clicked
+        center.addEventListener("click", function (e) {
+          createHeart();
+          const audio = new Audio(
+            "https://cdnjs.cloudflare.com/ajax/libs/soundjs/1.0.1/soundjs.min.js"
+          );
+          try {
+            audio.play();
+          } catch (err) {
+            console.log("Audio could not be played");
+          }
+        });
+
+        function createHeart() {
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+              const heart = document.createElement("div");
+              heart.innerHTML = "❤️";
+              heart.classList.add("heart");
+              heart.style.left = 80 + Math.random() * 40 + "px";
+              heart.style.top = 80 + "px";
+              container.appendChild(heart);
+
+              setTimeout(() => {
+                heart.remove();
+              }, 3000);
+            }, i * 300);
+          }
+        }
+
+        function getRandomColor() {
+          const colors = [
+            "#FF69B4",
+            "#FF1493",
+            "#DB7093",
+            "#FFC0CB",
+            "#FFB6C1",
+          ];
+          return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Make flower respond to mouse movement
+        document.addEventListener("mousemove", function (e) {
+          const flower = document.querySelector(".flower");
+          const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+          flower.style.transform = `rotate(${xAxis}deg)`;
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
